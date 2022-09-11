@@ -2,21 +2,17 @@
     background: linear-gradient(darkkhaki, green, black);
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(5px + 1.5vmin);
+    justify-content: top;
+    font-size: calc(5px + 1vmin);
     color: darkkhaki;
     margin: 5px;
     padding: 5px;
+    height: 20px + 50vmin;
 }
 .Card:hover {
     opacity: 70%;
 }  
 .icons{
-    display:block;
-    flex-direction: none;
-    align-items: left;
-    justify-content: left;
     text-align: left;
     color: honeydew;
     margin-bottom: 5px;
