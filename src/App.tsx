@@ -5,6 +5,7 @@ import InputForm from './components/InputForm';
 import GetNFTs from './components/IdFinder'
 import { ethers } from 'ethers'
 import { Container } from 'reactstrap';
+import Kards from './components/Kards';
 
 const App: React.FC = () => {
   const contractAddress = "0x63d85ec7b1561818ec03e158ec125a4113038a00"
@@ -13,7 +14,8 @@ const App: React.FC = () => {
   const [valid, setValid] = useState<boolean>(false)
   const [tokenIds, setTokenIds] = useState<Map<number, []>>()
   const [holderAddress, setHolderAddress] = useState<string>('')
-  let imageMap = new Map<number, boolean>()
+  const [images, setImages] = useState<Map<number, string>>()
+  const [rendered, setRendered] = useState<boolean>(false)
 
   const handleOnSubmit = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
@@ -27,6 +29,16 @@ const App: React.FC = () => {
 
   return (
   <div className="App">
+    <GetNFTs 
+      holderAddress={holderAddress}
+      contractAddress={contractAddress}
+      loaded={loaded}
+      setLoaded={setLoaded}
+      valid={valid}
+      tokenIds={tokenIds}
+      setTokenIds={setTokenIds}
+      setImages={setImages}
+    />
     <header className="App-header">
       <>
         <h1>Zem's Kryptoria NFT Scraper</h1>
@@ -44,16 +56,15 @@ const App: React.FC = () => {
       </>
       <Container fluid>
         <h5 hidden={!valid}>
-          <GetNFTs 
-            holderAddress={holderAddress}
-            contractAddress={contractAddress}
-            loaded={loaded}
-            setLoaded={setLoaded}
-            valid={valid}
-            tokenIds={tokenIds}
-            setTokenIds={setTokenIds}
-            imageMap={imageMap}
-          />
+        <Kards
+          loaded={loaded}
+          holderAddress={holderAddress}
+          contractAddress={contractAddress}
+          tokenIds={tokenIds}
+          images={images}
+          cardRendered={rendered}
+          setCardRendered={setRendered}
+        />
         </h5>
     </Container>
     </header>

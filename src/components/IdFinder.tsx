@@ -1,15 +1,4 @@
 import React, { useState } from 'react';
-import { GiAbdominalArmor, GiSamusHelmet } from 'react-icons/gi'
-import {
-    Card,
-    CardBody,
-    CardSubtitle,
-    CardText,
-    CardTitle,
-    Col,
-    Row,
-    Spinner,
-  } from "reactstrap";
 
 type Props = {
     contractAddress: string;
@@ -19,7 +8,7 @@ type Props = {
     valid: boolean;
     tokenIds: Map<number, []> | undefined;
     setTokenIds: (val: Map<number, []>  | undefined ) => void;
-    imageMap: Map<number, boolean>;
+    setImages: (val: Map<number, string> | undefined) => void;
 }
 
 export const GetNFTs: React.FC<Props> = ({
@@ -30,10 +19,10 @@ export const GetNFTs: React.FC<Props> = ({
     valid,
     tokenIds,
     setTokenIds,
-    imageMap
+    setImages
+
 }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false)
-    const [images, setImages] = useState<Map<number, string>>()
     
     React.useEffect(() => {
         if (!isLoading && !tokenIds) {
@@ -57,7 +46,6 @@ export const GetNFTs: React.FC<Props> = ({
                         let idMap = new Map<number, []>()
                         let imageMap = new Map<number, string>()
                         const r = response.result
-                        console.log(r)
                         if (!r || r.length === 0) {} 
                         else {
                             r.forEach((someValue: any) => {
@@ -77,70 +65,7 @@ export const GetNFTs: React.FC<Props> = ({
             }
         }
     },[contractAddress, isLoading, loaded, setImages, setLoaded, setTokenIds, tokenIds, holderAddress, valid])
-    if (tokenIds === undefined){return <>None Found</>}
-    const rendered: React.ReactElement[]= [];
-    let itemKey = 0
-    for(let [key, value] of tokenIds) {
-        const openseaLink = "https://opensea.io/assets/ethereum/" + contractAddress + "/" + key
-        let traits: any[] = []
-        let jsonItemList = []
-        let aType
-        let hType
-        for(let item of value) {
-            const jsonItem = JSON.parse(JSON.stringify(item))
-            if (jsonItem.trait_type !== undefined && jsonItem.value !== 'None' && jsonItem.value !== 0) { 
-                traits.push(React.createElement("div", {key: itemKey++}, jsonItem.trait_type, ' : ', jsonItem.value))
-                jsonItemList.push(jsonItem) 
-                if (jsonItem.trait_type === 'ARMOUR' && !aType){ aType =jsonItem.value } 
-                if (jsonItem.trait_type === 'HELMET' && !hType){ hType = jsonItem.value } 
-            }
-        
-        }
-        console.log(key, jsonItemList)
-        let keyImage = images?.get(key)
-        if (keyImage?.substring(0,7) === 'ipfs://') { 
-            keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
-        }
-        const component = React.createElement("div", {key: key},
-        <Col>
-            <Card 
-                body 
-                color="dark" 
-                className="Card p-2 mb-3 rounded bg-light border"
-            >
-                <div className='icons'>
-                    <GiSamusHelmet /> {hType}
-                    <br/>
-                    <GiAbdominalArmor/> {aType}  
-                </div>
-                <img 
-                    id={'someImage'}
-                    alt={keyImage}
-                    src={keyImage}
-                />
-                <CardBody>
-                    <CardTitle tag="h5" style={{color: 'goldenrod'}}>
-                    #{key}
-                    </CardTitle>
-                    <CardSubtitle
-                    className="mb-2 text-muted"
-                    tag="h6"
-                    >
-                        {traits}
-                    </CardSubtitle>
-                    <CardText>
-                        <a href={openseaLink} target="_blank" rel="noreferrer" className="stretched-link">
-                            Opensea.io </a>
-                    </CardText>
-
-                </CardBody>
-            </Card>
-        </Col>
-        )
-        rendered.push(component);
-    }
-    
-    return <Row xl="4" lg="3"sm="2" xs="1">{rendered}</Row>
+    return <></>
 }
 
 export default GetNFTs

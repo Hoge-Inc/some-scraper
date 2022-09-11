@@ -1,4 +1,8 @@
 
+a:hover {
+  cursor: url(https://ani.cursors-4u.net/cursors/cur-12/cur1080.cur),auto!important;
+}
+
 .App {
   text-align: center;
   cursor: url(https://ani.cursors-4u.net/cursors/cur-12/cur1080.cur),auto!important;
@@ -78,22 +82,4 @@ input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 
 h1 {
   color:darkolivegreen;
-}
-
-.Card {
-  margin: 5px;
-}
-
-.Card:hover {
-  opacity: 70%;
-}
-
-a:hover {
-  cursor: url(https://ani.cursors-4u.net/cursors/cur-12/cur1080.cur),auto!important;
-}
-
-div.icons {
-  text-align: left;
-  color: honeydew;
-  margin-bottom: 5px;
 }
