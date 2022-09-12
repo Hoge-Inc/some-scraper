@@ -91,7 +91,7 @@ input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 h1 {
   color:darkolivegreen;
   font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
-  font-size: 4em;
+  font-size: 3em;
   text-shadow: 1px 3px 0 #969696, 1px 13px 5px #414d72;
 }
 
