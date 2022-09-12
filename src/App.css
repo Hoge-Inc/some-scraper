@@ -21,15 +21,18 @@ a:hover {
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color:#000921f5;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 24pt;
   color: darkkhaki;
-  
+  text-shadow: -1px -2px 1px rgba(96, 88, 1, 0.8), -1px 2px 1px rgba(14, 166, 209, 0.58);
+}
+
+body{
+  background-color: #00081cdb;
 }
 
 .App-link {
@@ -45,7 +48,7 @@ a:hover {
   }
 }
 
-button:active {
+button.get:active {
   cursor: grabbing;
 }
 
@@ -57,9 +60,10 @@ button.get {
   cursor:pointer;
   color: lavender;
   text-shadow: 1px 2px grey;
+  border-radius: 10px;
 }
 button.get:hover {
-  background-color: chartreuse;
+  background-color: rgba(128, 255, 0, 0.582);
   color: blueviolet;
   font-weight:bolder;
   text-shadow: none;
@@ -72,7 +76,11 @@ input {
   margin-bottom: 1em;
   font: 400 16px system-ui;
   inline-size: 23rem;
-  padding-left: .2em;
+  padding: .2em;
+  padding-left: .3em;
+  border-radius: 7px;
+  transform: translateY(-5px);
+  margin: 15px;
 }
 /* color change  */
 input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -82,5 +90,8 @@ input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
 
 h1 {
   color:darkolivegreen;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  font-size: 4em;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #414d72;
 }
 

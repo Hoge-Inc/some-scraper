@@ -43,35 +43,43 @@ export const Kards: React.FC<Props> = ({
                 }
             }
             console.log(key, jsonItemList)
+            const iconDiv = !aType ? <div className='iconDiv'></div> :
+                <div className='icons' hidden={!aType}>
+                    <GiSamusHelmet /> {hType}
+                    <br/>
+                    <GiAbdominalArmor/> {aType}  
+                </div>  
+                
             let keyImage = images?.get(key)
             if (keyImage?.substring(0,7) === 'ipfs://') { 
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
             }
             const component = React.createElement("div", {key: key, align:"center",
-                    className: 'col-12 col-xs-6 col-sm-4 col-md-3 col-lg-2 '},
+                    className: 'col-12 col-sm-6 col-lg-4 col-xl-2 '},
                 <div className='Card'>
-                    <div className='icons'>
-                        <GiSamusHelmet /> {hType}
-                        <br/>
-                        <GiAbdominalArmor/> {aType}  
-                    </div>
+
                     <div className='CardImageFrame'>
                         <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
                     </div>
-                    <div className='CardBody'>
-                        <div className='CardTitle'>
+                    <div className='CardTitle'>
                             #{key}
-                        </div>
+                    </div>
+                    <div className='CardBody'>
+
+                        {iconDiv}
+
                         <div className='CardSubtitle'>
                             {traits}
                         </div>
                         <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
-                            { e.preventDefault(); window.location.href=openseaLink; }}>
-                            View on OpenSea.io</button>
+                            { e.preventDefault(); window.open(
+                                openseaLink,
+                                '_blank' // <- This is what makes it open in a new window.
+                              ); }}>
+                            OpenSea.io</button>
                     </div>
-                    <p/>
                     <div className='CardText'>
-                            0x63d85ec7b1561818ec03e158ec125a4113038a00
+                        {contractAddress}
                     </div>
                 </div>
 
@@ -81,7 +89,7 @@ export const Kards: React.FC<Props> = ({
 
     } 
     return (
-        <div className='row align-content-center'>
+        <div className='row align-content-center '>
             {rendered}
         </div>
     )

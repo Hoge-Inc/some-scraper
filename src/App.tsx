@@ -52,8 +52,8 @@ const App: React.FC = () => {
           handleOnSubmit={handleOnSubmit}
         />
         <br />
-      <h5 hidden={!valid}>
-      <Kards
+    </header>
+    <Kards
         loaded={loaded}
         holderAddress={holderAddress}
         contractAddress={contractAddress}
@@ -62,8 +62,6 @@ const App: React.FC = () => {
         cardRendered={rendered}
         setCardRendered={setRendered}
       />
-      </h5>
-    </header>
   </div>
   );
 }

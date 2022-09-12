@@ -1,43 +1,41 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:400%22");
 
 .Card {
-    background: linear-gradient(teal, green, black);
+    background: linear-gradient(teal 40%, green 60%, black 80%);
     display: flex;
     flex-direction: column;
     font-size: 12pt;
     color: darkkhaki;
     margin: 5px;
+    margin-top: 25px;
     padding: 5px;
     height: 700px;
-    width: 250px;
+    width: 280px;
     text-align: center;
     border-radius: 15px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-.Card:hover {
-    opacity: 70%;
-}  
-.icons{
-    text-align: left;
-    color: honeydew;
-    margin-bottom: 5px;
-}
+
 .CardImageFrame{
-    border: 5px solid wheat;
-    margin: 0.5em;
+    border: 4px solid goldenrod;
+    margin: 7px;
+    border-radius: 10px;
 }
 .CardImage{
-    padding: 0.5em;
+    padding: 0.25em;
+    border-radius: 6px;
 }
 .CardBody{
     background: black;
     padding: 1em;
-    height: 24em;
+    height: 23em;
     border-radius: 30% / 10%;
 }
 .CardTitle{
-    color: goldenrod;
+    color: darkgoldenrod;
     height: 2em;
     font-size: 1.5em;
+    text-shadow: 2px 2px 1px darkblue;
 }
 .CardSubtitle{
     color: dimgray;
@@ -45,8 +43,13 @@
     font-size: small;
 }
 .CardText{
-    color: white;
+    color: honeydew;
     font-size: xx-small;
+}
+
+.icons{
+    
+    color: honeydew;
 }
 
 .inspect {
@@ -57,6 +60,69 @@
     height: 60px;
     width: 180px;
     font-size: large;
-  }
+    border-radius: 10px;
+    color: wheat;
+    text-shadow: 2px 2px 1px darkblue;
+}
+
+.inspect:hover {
+    opacity: 90%;
+    transform: scale(1.06);
+    cursor: pointer;
+    box-shadow: -2px 7px 5px MediumSeaGreen;    
+}  
+
+.inspect:active {
+    transform: translate(-1px, 1px);
+    box-shadow: -2px 4px 2px rgb(21, 252, 4);
+    opacity: 90%;  
+}
 
 
+.iconDiv {
+    height: 3em;
+}
+
+
+
+
+@media (max-width:575px) {
+    .Card{
+        width: 400px;
+        height: 800px;
+    }
+}
+
+@media (min-width:775px) {
+    .Card{
+        width: 400px;
+        height: 800px;
+    }
+}
+
+@media (min-width:1200px) {
+    .Card{
+        width: 220px;
+        height: 650px;
+    }
+}
+@media (min-width:1775px) {
+    .Card{
+        height: 47em;
+        width: 320px;
+    }
+}
+
+@media (min-width:2275px) {
+    .Card{
+        height: 49em;
+        width: 370px;
+    }
+    .CardSubtitle{
+        height: 15em;
+        font-size: small;
+    }
+    .CardText{
+        font-size: x-small;
+    }
+}
