@@ -4,15 +4,14 @@
     background: linear-gradient(teal, green, black);
     display: flex;
     flex-direction: column;
-    justify-content: top;
     font-size: 12pt;
     color: darkkhaki;
     margin: 5px;
     padding: 5px;
     height: 700px;
-    width: 230px;
+    width: 250px;
     text-align: center;
-    border-radius: 20px;
+    border-radius: 15px;
 }
 .Card:hover {
     opacity: 70%;
@@ -59,3 +58,5 @@
     width: 180px;
     font-size: large;
   }
+
+

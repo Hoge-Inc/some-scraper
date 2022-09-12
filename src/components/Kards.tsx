@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { GiAbdominalArmor, GiSamusHelmet } from 'react-icons/gi'
-import { Col, Row, } from "reactstrap";
 import './Kards.css'
 
 type Props = {
@@ -42,15 +41,15 @@ export const Kards: React.FC<Props> = ({
                     if (jsonItem.trait_type === 'ARMOUR' && !aType){ aType =jsonItem.value } 
                     if (jsonItem.trait_type === 'HELMET' && !hType){ hType = jsonItem.value } 
                 }
-            
             }
             console.log(key, jsonItemList)
             let keyImage = images?.get(key)
             if (keyImage?.substring(0,7) === 'ipfs://') { 
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
             }
-            const component = React.createElement("div", {key: key},
-                <Col><div className='Card container'>
+            const component = React.createElement("div", {key: key, align:"center",
+                    className: 'col-12 col-xs-6 col-sm-4 col-md-3 col-lg-2 '},
+                <div className='Card'>
                     <div className='icons'>
                         <GiSamusHelmet /> {hType}
                         <br/>
@@ -66,22 +65,26 @@ export const Kards: React.FC<Props> = ({
                         <div className='CardSubtitle'>
                             {traits}
                         </div>
-                        
                         <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
                             { e.preventDefault(); window.location.href=openseaLink; }}>
-                            Inspect</button>
+                            View on OpenSea.io</button>
                     </div>
                     <p/>
                     <div className='CardText'>
                             0x63d85ec7b1561818ec03e158ec125a4113038a00
                     </div>
-                </div></Col>
+                </div>
+
             )
             rendered.push(component);
         }
 
     } 
-    return <Row xl="5" lg="4"sm="3" xs="2">{rendered}</Row>
+    return (
+        <div className='row align-content-center'>
+            {rendered}
+        </div>
+    )
 }
 
 export default Kards

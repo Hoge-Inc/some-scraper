@@ -4,10 +4,8 @@ import './App.css';
 import InputForm from './components/InputForm';
 import GetNFTs from './components/IdFinder'
 import { ethers } from 'ethers'
-import { Container } from 'reactstrap';
 import Kards from './components/Kards';
 
-console.log(window.innerWidth);
 const App: React.FC = () => {
   
   const contractAddress = "0x63d85ec7b1561818ec03e158ec125a4113038a00"
@@ -42,7 +40,6 @@ const App: React.FC = () => {
       setImages={setImages}
     />
     <header className="App-header">
-      <>
         <h1>Zem's Kryptoria NFT Scraper</h1>
         <img src={logo} className="App-logo" alt="logo" />
         <div hidden={!someMsg}>{someMsg}</div>
@@ -55,22 +52,18 @@ const App: React.FC = () => {
           handleOnSubmit={handleOnSubmit}
         />
         <br />
-      </>
-      <Container fluid>
-        <h5 hidden={!valid}>
-        <Kards
-          loaded={loaded}
-          holderAddress={holderAddress}
-          contractAddress={contractAddress}
-          tokenIds={tokenIds}
-          images={images}
-          cardRendered={rendered}
-          setCardRendered={setRendered}
-        />
-        </h5>
-    </Container>
+      <h5 hidden={!valid}>
+      <Kards
+        loaded={loaded}
+        holderAddress={holderAddress}
+        contractAddress={contractAddress}
+        tokenIds={tokenIds}
+        images={images}
+        cardRendered={rendered}
+        setCardRendered={setRendered}
+      />
+      </h5>
     </header>
-    
   </div>
   );
 }
