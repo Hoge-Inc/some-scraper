@@ -78,18 +78,17 @@
     opacity: 90%;  
 }
 
-
 .iconDiv {
     height: 3em;
 }
-
-
-
 
 @media (max-width:575px) {
     .Card{
         width: 400px;
         height: 800px;
+    }
+    .CardText{
+        font-size: small;
     }
 }
 
@@ -98,6 +97,9 @@
         width: 400px;
         height: 800px;
     }
+    .CardText{
+        font-size:small;
+    }
 }
 
 @media (min-width:1200px) {
@@ -105,11 +107,17 @@
         width: 220px;
         height: 650px;
     }
+    .CardText{
+        font-size: xx-small;
+    }
 }
 @media (min-width:1775px) {
     .Card{
         height: 47em;
         width: 320px;
+    }
+    .CardText{
+        font-size: x-small;
     }
 }
 
