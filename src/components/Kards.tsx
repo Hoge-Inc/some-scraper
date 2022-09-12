@@ -1,8 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GiAbdominalArmor, GiSamusHelmet } from 'react-icons/gi'
 import { Col, Row, } from "reactstrap";
 import './Kards.css'
-
 
 type Props = {
     loaded: boolean;
@@ -22,7 +21,7 @@ export const Kards: React.FC<Props> = ({
     images,
 
 }) => {
-
+    
     const rendered: React.ReactElement[]= [];
     if (!holderAddress || !loaded) {} else {
 
@@ -51,7 +50,7 @@ export const Kards: React.FC<Props> = ({
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
             }
             const component = React.createElement("div", {key: key},
-                <Col><div className='Card'>
+                <Col><div className='Card container'>
                     <div className='icons'>
                         <GiSamusHelmet /> {hType}
                         <br/>
@@ -67,19 +66,22 @@ export const Kards: React.FC<Props> = ({
                         <div className='CardSubtitle'>
                             {traits}
                         </div>
-                        <div className='CardText'>
-                            <a href={openseaLink} target="_blank" rel="noreferrer">
-                                Opensea.io </a>
-                        </div>
+                        
+                        <button className='inspect' onClick={(e: { preventDefault: () => void; }) => 
+                            { e.preventDefault(); window.location.href=openseaLink; }}>
+                            Inspect</button>
+                    </div>
+                    <p/>
+                    <div className='CardText'>
+                            0x63d85ec7b1561818ec03e158ec125a4113038a00
                     </div>
                 </div></Col>
-                
             )
             rendered.push(component);
         }
 
     } 
-    return <Row xl="4" lg="3"sm="2" xs="1">{rendered}</Row>
+    return <Row xl="5" lg="4"sm="3" xs="2">{rendered}</Row>
 }
 
 export default Kards

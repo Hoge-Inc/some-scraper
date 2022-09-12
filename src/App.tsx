@@ -7,7 +7,9 @@ import { ethers } from 'ethers'
 import { Container } from 'reactstrap';
 import Kards from './components/Kards';
 
+console.log(window.innerWidth);
 const App: React.FC = () => {
+  
   const contractAddress = "0x63d85ec7b1561818ec03e158ec125a4113038a00"
   const [someMsg, setSomeMsg] = useState<string>('')
   const [loaded, setLoaded] = useState<boolean>(false)
