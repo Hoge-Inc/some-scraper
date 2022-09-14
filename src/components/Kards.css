@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Roboto:400%22");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.CardBox {
+    margin: 30px;
+}
 
 .Card {
     background: linear-gradient(teal 40%, green 60%, black 80%);

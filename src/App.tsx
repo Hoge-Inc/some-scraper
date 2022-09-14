@@ -53,15 +53,17 @@ const App: React.FC = () => {
         />
         <br />
     </header>
-    <Kards
-        loaded={loaded}
-        holderAddress={holderAddress}
-        contractAddress={contractAddress}
-        tokenIds={tokenIds}
-        images={images}
-        cardRendered={rendered}
-        setCardRendered={setRendered}
-      />
+    <div className='cardBox'>
+      <Kards
+          loaded={loaded}
+          holderAddress={holderAddress}
+          contractAddress={contractAddress}
+          tokenIds={tokenIds}
+          images={images}
+          cardRendered={rendered}
+          setCardRendered={setRendered}
+        />
+    </div>
   </div>
   );
 }

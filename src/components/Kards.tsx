@@ -18,7 +18,6 @@ export const Kards: React.FC<Props> = ({
     contractAddress,
     tokenIds,
     images,
-
 }) => {
     
     const rendered: React.ReactElement[]= [];
@@ -49,7 +48,6 @@ export const Kards: React.FC<Props> = ({
                     <br/>
                     <GiAbdominalArmor/> {aType}  
                 </div>  
-                
             let keyImage = images?.get(key)
             if (keyImage?.substring(0,7) === 'ipfs://') { 
                 keyImage = 'https://ipfs.io/ipfs/' + keyImage?.slice(7, keyImage.length)
@@ -57,7 +55,6 @@ export const Kards: React.FC<Props> = ({
             const component = React.createElement("div", {key: key, align:"center",
                     className: 'col-12 col-sm-6 col-lg-4 col-xl-2 '},
                 <div className='Card'>
-
                     <div className='CardImageFrame'>
                         <img className='CardImage img-fluid'src={keyImage} alt={keyImage} />
                     </div>
@@ -82,15 +79,15 @@ export const Kards: React.FC<Props> = ({
                         {contractAddress}
                     </div>
                 </div>
-
             )
             rendered.push(component);
         }
-
     } 
     return (
-        <div className='row align-content-center '>
-            {rendered}
+        <div className='CardBox'>
+            <div className='row align-content-center '>
+                {rendered}
+            </div>
         </div>
     )
 }
