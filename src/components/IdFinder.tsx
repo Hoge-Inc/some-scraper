@@ -12,6 +12,8 @@ import {
 type Props = {
     contractAddress: string;
     userAddress: string;
+    isLoading: boolean;
+    setIsLoading: (val: boolean) => void;
     loaded: boolean;
     setLoaded: (val: boolean) => void;
     valid: boolean;
@@ -22,13 +24,15 @@ type Props = {
 export const GetNFTs: React.FC<Props> = ({
     contractAddress,
     userAddress,
+    isLoading,
+    setIsLoading,
     loaded,
     setLoaded,
     valid,
     tokenIds,
     setTokenIds
 }) => {
-    const [isLoading, setIsLoading] = React.useState<boolean>(false);
+    
     const [images, setImages] = React.useState<Map<number, string>>()
 
     React.useEffect(() => {
@@ -61,7 +65,7 @@ export const GetNFTs: React.FC<Props> = ({
                                     idMap.set(someValue.token_id, JSON.parse(someValue.metadata).attributes)
                                     imageMap.set(someValue.token_id, JSON.parse(someValue.metadata).image)
                                 }
-                            })
+                            })                        
                         }
                         setTokenIds(idMap)
                         setImages(imageMap)
@@ -72,20 +76,27 @@ export const GetNFTs: React.FC<Props> = ({
                 }      
             }
         }
-    },[contractAddress, isLoading, loaded, setImages, setLoaded, setTokenIds, tokenIds, userAddress, valid])
+    },[contractAddress, isLoading, loaded, setImages, setIsLoading, setLoaded, setTokenIds, tokenIds, userAddress, valid])
+    
     if (tokenIds === undefined){return <>None Found</>}
     const rendered: React.ReactElement[]= [];
-    
     let itemKey = 0
     for(let [key, value] of tokenIds) {
         let traits: any[] = []
         let jsonItemList = []
-        for(let item of value) {
-            const jsonItem = JSON.parse(JSON.stringify(item))
-            if (jsonItem.trait_type !== undefined) { 
-                traits.push(React.createElement("div", {key: itemKey++}, jsonItem.trait_type, ' : ', jsonItem.value))
-                jsonItemList.push(jsonItem) 
+        try {    
+            for(let item of value) {
+                const jsonItem = JSON.parse(JSON.stringify(item))
+                if (jsonItem.trait_type !== undefined) { 
+                    traits.push(React.createElement("div", {key: itemKey++}, jsonItem.trait_type, ' : ', jsonItem.value))
+                    jsonItemList.push(jsonItem) 
+                }
             }
+        } catch (e) {
+            if (e instanceof TypeError || e instanceof RangeError || e instanceof EvalError) { 
+                console.group("%cError", "color: red")
+                console.log(e.name, '\n', e.message) 
+            } else { console.error(e) }  
         }
         console.log(key, jsonItemList)
         let keyImage = images?.get(key)
@@ -128,7 +139,7 @@ export const GetNFTs: React.FC<Props> = ({
         )
         rendered.push(component);
     }
-    
+
     return <>
         <Row
           xl="4"

@@ -13,6 +13,7 @@ const App: React.FC = () => {
   const [userAddress, setUserAddress] = useState<string>('')
   const [someMsg, setSomeMsg] = useState<string>('')
   const [contractAddress, setContractAddress] = useState("")
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [loaded, setLoaded] = React.useState<boolean>(false)
   const [valid, setValid] = useState<boolean>(false)
   const [provider, setProvider] = useState<ethers.providers.Web3Provider>()
@@ -79,57 +80,57 @@ const App: React.FC = () => {
     console.log(contractAddress);
   };
 
+  const inputOptions = {
+    setValid: setValid,
+    setSomeMsg: setSomeMsg,
+    contractAddress: contractAddress,
+    setContractAddress: setContractAddress,
+    handleOnSubmit: handleOnSubmit,
+    placeholder: inputPlaceholder,
+  }
+
+  const nftOptions = {
+    userAddress: userAddress,
+    contractAddress: contractAddress,
+    isLoading: isLoading,
+    setIsLoading: setIsLoading,
+    loaded: loaded,
+    setLoaded: setLoaded,
+    valid: valid,
+    tokenIds: tokenIds,
+    setTokenIds: setTokenIds,
+  }
+
   return (
   <div className="App">
     <header className="App-header">
-      <>
-        <h1>Zem's NFT Scraper</h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <h6 className="text-muted"><small>This versoin is only working with ETH network currenting</small></h6>
-        <h6>
-          <button hidden={!network} onClick={disconnect}>Disconnect</button>
-          <div>
-            Chain Status: 
-            <small> {network?.name}</small> 
-            <br></br>
-            Chain ID: 
-            <small> {network?.chainId}</small>
-          </div>
-          <div>
-            Wallet Address: 
-            <br></br>
-            <small>{userAddress}</small>
-          </div>
-        </h6>
-        <div hidden={!someMsg}>{someMsg}</div>
-
-      </>
+      <h1>Zem's NFT Scraper</h1>
+      <img src={logo} className="App-logo" alt="logo" />
+      <h6 className="text-muted"><small>This versoin is only working with ETH network currenting</small></h6>
+      <h6>
+        <button hidden={!network} onClick={disconnect}>Disconnect</button>
+        <div>
+          Chain Status: 
+          <small> {network?.name}</small> 
+          <br></br>
+          Chain ID: 
+          <small> {network?.chainId}</small>
+        </div>
+        <div>
+          Wallet Address: 
+          <br></br>
+          <small>{userAddress}</small>
+        </div>
+      </h6>
+      <div hidden={!someMsg}>{someMsg}</div>
     </header>
-    <body>
-      
-      <br></br>
-      <InputForm
-          setValid={setValid}
-          setSomeMsg={setSomeMsg}
-          contractAddress={contractAddress}
-          setContractAddress={setContractAddress}
-          handleOnSubmit={handleOnSubmit}
-          placeholder={inputPlaceholder}
-        />
+    <br/>
+    <InputForm {...inputOptions} />
     <Container fluid>
-        <h5 hidden={!valid}>
-          <GetNFTs 
-            userAddress={userAddress}
-            contractAddress={contractAddress}
-            loaded={loaded}
-            setLoaded={setLoaded}
-            valid={valid}
-            tokenIds={tokenIds}
-            setTokenIds={setTokenIds}
-          />
-        </h5>
+      <h5 hidden={!valid}>
+        <GetNFTs {...nftOptions} />
+      </h5>
     </Container>
-    </body>
   </div>
   );
 }
